@@ -13,7 +13,6 @@ fetch(`http://localhost:3000/api/teddies/` + urlId("id"))
         priceTeddies.innerHTML = data.price + " €";
         let colorsTeddies = document.getElementById("colors__teddies");
         data.colors.forEach(color => {
-            console.log(color);
             if (color === "Pale brown") {
                 color = "#977155";
             } else if (color === "Dark brown") {
@@ -25,5 +24,11 @@ fetch(`http://localhost:3000/api/teddies/` + urlId("id"))
             newSpan.classList.add("color__dispo");
             newColor.appendChild(newSpan);
             newSpan.style.backgroundColor = color;
+        })
+        document.getElementById("storagePanier").addEventListener('click', () => {
+            localStorage.setItem("teddiesId", data._id);
+            localStorage.setItem("teddiesName", data.name);
+            localStorage.setItem("teddiesPicture", data.imageUrl);
+            localStorage.setItem("teddiesPrice", data.price);
         })
     });
