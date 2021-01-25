@@ -20,14 +20,33 @@
     </button>
 
     <header>
-        <a href="index.html"><img src="images/logo.png"></a>
+        <a href="index.html"><img src="images/logo.png" class="shadow-sm"></a>
     </header>
 
-    <section class="container">
-        <div id="card_container"></div>
-    </section>
+    <div class="container">
+        <div class="row title">
+            <h1>Votre ours en peluche fais main !</h1>
+            <h2 id="teddiesName"></h2>
+        </div>
+    </div>
 
-    <div id="prix"></div>
+    <div class="container description__teddies">
+        <div class="row">
+            <div class="col-6">
+                <img id="imgTeddies" src="" class="shadow-sm">
+            </div>
+            <div class="col-6">
+                <div class="row">
+                    <p id="descriptionTeddies"></p>
+                    <p id="priceTeddies"></p>
+                </div>
+                <div class="row">
+                    <p>Couleurs disponible :</p>
+                    <ul id="colors__teddies"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     <script src="produits.js"></script>

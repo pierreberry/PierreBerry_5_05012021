@@ -3,24 +3,41 @@ fetch("http://localhost:3000/api/teddies")
         return response.json();
     })
     .then((data) => {
-        let container = document.getElementById("card_container");
+        let container = document.getElementById("cards");
         data.forEach(function (data) {
+            const col = document.createElement("div");
+            col.classList.add("col");
+            container.appendChild(col);
             const newCard = document.createElement("div");
             newCard.classList.add("card");
-            container.appendChild(newCard);
+            col.appendChild(newCard);
             const newImg = document.createElement("img");
+            newImg.classList.add("card-img-top");
+            newImg.classList.add("shadow-sm");
             newCard.appendChild(newImg);
             newImg.src = data.imageUrl;
-            const newTitle = document.createElement("div");
-            newCard.appendChild(newTitle);
-            newTitle.innerHTML =
+            const cardBody = document.createElement("div");
+            cardBody.classList.add("card-body");
+            newCard.appendChild(cardBody);
+            const newPrice = document.createElement("h5");
+            newPrice.classList.add("card-title");
+            cardBody.appendChild(newPrice);
+            newPrice.innerHTML = data.price + " €";
+            const newDescription = document.createElement("p");
+            newDescription.classList.add("card-text");
+            cardBody.appendChild(newDescription);
+            newDescription.innerHTML =
                 `<a href='produits.html?id=` +
                 data._id +
-                `' class="name">` +
+                `'> Ours en peluche ` +
                 data.name +
                 `</a>`;
-            const newPrice = document.createElement("div");
-            newCard.appendChild(newPrice);
-            newPrice.innerHTML = `<p class="prix">` + data.price + `€</p>`;
+            const newButton = document.createElement("a");
+            newButton.classList.add("btn");
+            newButton.classList.add("btn-primary");
+            cardBody.appendChild(newButton);
+            newButton.href = `produits.html?id=` +
+                data._id;
+            newButton.innerHTML = "Voir plus";
         });
     });

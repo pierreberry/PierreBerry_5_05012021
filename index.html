@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
     <title>Hello, world!</title>
 </head>
 
@@ -20,17 +20,17 @@
     </button>
 
     <header>
-        <a href="index.html"><img src="images/logo.png"></a>
+        <a href="index.html"><img src="images/logo.png" class="shadow-sm"></a>
     </header>
 
-    <section class="container title">
-        <div class="row">
-            <h1>Vos ours en peluche fais mains</h1>
+    <section class="container">
+        <div class="row title">
+            <h1>Vos ours en peluche fait mains</h1>
         </div>
     </section>
 
     <section class="container">
-        <div id="card_container"></div>
+        <div id="cards" class="row row-cols-auto"></div>
     </section>
 
     <script src="app.js"></script>
