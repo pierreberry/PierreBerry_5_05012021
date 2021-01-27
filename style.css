@@ -1,19 +1,26 @@
 body{
     margin: 0;
     padding: 0;
-    background-color: #f4e9f1 !important;
+    background-color: #EAD7E4 !important;
 }
 
+.btn{
+    background-color: #8f5bfe;
+    color: #f4e9f1;
+}
 .panier{
+    position: sticky;
     top: 50px;
     left: 90%;
-    font-size: 2rem;
-    position: fixed;
-    width: 100px;
+    font-size: 3vh;
+    width: 5%;
     display: flex;
     justify-content: center;
 }
-
+.btn:hover{
+    color: #e4c9dc;
+    box-shadow: 5px 5px #c892ba;
+}
 header{
     display: flex;
     justify-content: center;
@@ -27,7 +34,6 @@ header a{
 header a img{
     width: 100%;
 }
-
 .title{
     text-align: center;
     width: 100%;
@@ -41,22 +47,34 @@ header a img{
     align-items: center;
     justify-content: center;
 }
-
 .card {
     width: 300px;
     height: 375px;
     margin: 10px;
 }
-.card img {
+.lien__image{
     height: 70%;
-    object-fit: cover;
 }
-
-
+.card img {
+    height: 100%;
+    object-fit: cover;
+    transition: 200ms;
+}
+.card .lien__image img:hover{
+    transform: scale(1.03);
+}
+.card-text a{
+    color: black;
+    text-decoration: none;
+    transition: 200ms;
+    font-weight: 600;
+}
+.card-text:hover a{
+    text-shadow: 2px 2px 2px #c892ba;
+}
 .description__teddies{
     height: 50vh;
 }
-
 .description__teddies img{
     width: 100%;
     height: 100%;

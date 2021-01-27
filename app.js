@@ -11,10 +11,15 @@ fetch("http://localhost:3000/api/teddies")
             const newCard = document.createElement("div");
             newCard.classList.add("card");
             col.appendChild(newCard);
+            const cardLink = document.createElement("a");
+            cardLink.classList.add("lien__image");
+            newCard.appendChild(cardLink);
+            cardLink.href = `produits.html?id=` +
+                data._id;
             const newImg = document.createElement("img");
             newImg.classList.add("card-img-top");
             newImg.classList.add("shadow-sm");
-            newCard.appendChild(newImg);
+            cardLink.appendChild(newImg);
             newImg.src = data.imageUrl;
             const cardBody = document.createElement("div");
             cardBody.classList.add("card-body");
@@ -34,7 +39,6 @@ fetch("http://localhost:3000/api/teddies")
                 `</a>`;
             const newButton = document.createElement("a");
             newButton.classList.add("btn");
-            newButton.classList.add("btn-primary");
             cardBody.appendChild(newButton);
             newButton.href = `produits.html?id=` +
                 data._id;
