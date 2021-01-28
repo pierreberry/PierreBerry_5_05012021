@@ -13,9 +13,19 @@ body{
     top: 50px;
     left: 90%;
     font-size: 3vh;
-    width: 5%;
+    width: 10vh;
     display: flex;
     justify-content: center;
+}
+#red__dot{
+    position: absolute;
+    top: 1px;
+    right: 25px;
+    width: 15px;
+    height: 15px;
+    border-radius: 50px;
+    background-color: red;
+    visibility: hidden;
 }
 .btn:hover{
     color: #e4c9dc;
@@ -27,12 +37,8 @@ header{
     width: 100%;
 }
 
-header a{
-    margin-top: 10px;
-    width: 15%;
-}
 header a img{
-    width: 100%;
+    width: 30vh;
 }
 .title{
     text-align: center;
@@ -51,6 +57,10 @@ header a img{
     width: 300px;
     height: 375px;
     margin: 10px;
+    overflow: hidden;
+}
+.card-body{
+    z-index: 1;
 }
 .lien__image{
     height: 70%;
@@ -58,10 +68,11 @@ header a img{
 .card img {
     height: 100%;
     object-fit: cover;
-    transition: 200ms;
+    transition: 1000ms;
+    z-index: -1;
 }
 .card .lien__image img:hover{
-    transform: scale(1.03);
+    transform: scale(1.1);
 }
 .card-text a{
     color: black;
@@ -80,6 +91,7 @@ header a img{
     height: 100%;
     object-fit: contain;
 }
+
 #colors__teddies{
     display: flex;
     list-style: none;
@@ -91,6 +103,45 @@ header a img{
     border-radius: 50px;
     margin: 5px;
 }
-.color__dispo:hover{
-    border: 3px solid;
+input{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    margin: 5px;
+    background-color: blue;
+}
+input:hover{
+    cursor: pointer;
+    border: 3px solid #8f5bfe;
+}
+
+input:checked{
+    border: 3px solid #8f5bfe;
+}
+
+#teddiesColor{
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+}
+#teddiesPicture{
+    width: 20%;
+}
+
+#panierVide{
+    text-align: center;
+    width: 100%;
+    height: 50vh;
+    overflow: hidden;
+    position: absolute;
+}
+
+#test__couleur{
+    color: red;
+    visibility: hidden;
 }
