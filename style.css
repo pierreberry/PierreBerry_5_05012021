@@ -95,6 +95,7 @@ header a img{
 #colors__teddies{
     display: flex;
     list-style: none;
+    margin-bottom: 1rem;
 }
 .color__dispo{
     display: inline-block;

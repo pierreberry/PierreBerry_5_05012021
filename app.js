@@ -44,7 +44,7 @@ fetch("http://localhost:3000/api/teddies")
             newName.innerHTML =
                 `<a href='produits.html?id=` +
                 data._id +
-                `'> Ours en peluche ` +
+                `'>` +
                 data.name +
                 `</a>`;
             //Creation of the button Voir plus a.btn

@@ -26,6 +26,7 @@ fetch(`http://localhost:3000/api/teddies/` + urlId("id"))
             newColor.style.backgroundColor = color;
             colorsTeddies.appendChild(newColor);
         })
+        console.log(data.colors);
         let colorChoosen = "";
         document.getElementById('colors__teddies').addEventListener('change', (e) => {
             colorChoosen = e.target.value;
