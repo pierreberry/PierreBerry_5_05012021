@@ -1,16 +1,22 @@
-if (localStorage.length > 0) {
-    document.getElementById("panierVide").style.visibility = 'hidden';
-    document.getElementById("panierPlein").style.visibility = 'visible';
-} else {
+function showEmptyCart() {
     document.getElementById("panierVide").style.visibility = 'visible';
     document.getElementById("panierPlein").style.visibility = 'hidden';
 }
 
+function showCartContent() {
+    document.getElementById("panierVide").style.visibility = 'hidden';
+    document.getElementById("panierPlein").style.visibility = 'visible';
+}
+
+if (localStorage.length > 0) {
+    showCartContent();
+} else {
+    showEmptyCart();
+}
+
 document.getElementById("clearStorage").addEventListener('click', (e) => {
     localStorage.clear();
-    document.getElementById("panierPlein").style.visibility = 'hidden';
-    document.getElementById("panierVide").style.visibility = 'visible';
-    document.getElementById("red__dot").style.visibility = "hidden";
+    showEmptyCart();
 })
 
 teddiesName.innerHTML = localStorage.getItem('teddiesName');

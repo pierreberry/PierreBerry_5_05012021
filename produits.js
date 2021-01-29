@@ -10,7 +10,7 @@ fetch(`http://localhost:3000/api/teddies/` + urlId("id"))
         teddiesName.innerHTML = data.name;
         imgTeddies.src = data.imageUrl;
         descriptionTeddies.innerHTML = data.description;
-        priceTeddies.innerHTML = data.price + " €";
+        priceTeddies.innerHTML = data.price / 100 + "," + data.price % 100 + " €";
         const colorsTeddies = document.getElementById("colors__teddies");
         data.colors.forEach(color => {
             if (color === "Pale brown") {
@@ -26,15 +26,17 @@ fetch(`http://localhost:3000/api/teddies/` + urlId("id"))
             newColor.style.backgroundColor = color;
             colorsTeddies.appendChild(newColor);
         })
-        console.log(data.colors);
         let colorChoosen = "";
-        document.getElementById('colors__teddies').addEventListener('change', (e) => {
-            colorChoosen = e.target.value;
-            document.getElementById("test__couleur").style.visibility = "hidden";
-        })
+        if (data.colors.length === 1) {
+            colorChoosen = data.colors[0];
+        } else {
+            document.getElementById('colors__teddies').addEventListener('change', (e) => {
+                colorChoosen = e.target.value;
+                document.getElementById("test__couleur").style.visibility = "hidden";
+            })
+        }
         document.getElementById("storagePanier").addEventListener('click', () => {
             if (colorChoosen === "") {
-                console.log(colorChoosen);
                 document.getElementById("test__couleur").style.visibility = "visible";
             } else {
                 localStorage.setItem("teddiesId", data._id);
@@ -51,8 +53,3 @@ if (localStorage.length > 0) {
     const dot = document.getElementById("red__dot");
     dot.style.visibility = "visible";
 }
-let colorChoosen = "";
-document.getElementById('colors__teddies').addEventListener('change', (e) => {
-    colorChoosen = e.target.value;
-    console.log(colorChoosen);
-})
