@@ -46,6 +46,7 @@ function displayColors(data) {
 function storage(data) {
 
     let colorChoosen = "";
+
     if (data.colors.length === 1) {
         colorChoosen = data.colors[0];
     } else {
