@@ -33,7 +33,7 @@ class Product {
 
 fetch("/products")
     .then((response) => {
-        res.json()
+        response.json()
     })
     .then((teddies) => {
 
