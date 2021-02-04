@@ -1,3 +1,8 @@
+if (localStorage.length > 0) {
+    const dot = document.getElementById("red__dot");
+    dot.style.visibility = "visible";
+}
+
 class Product {
     constructor(colors, id, name, price, image, description) {
         this.colors = colors;
@@ -11,7 +16,6 @@ class Product {
     getPrice() {
         return this.price / 100 + ',' + this.price % 100 + ' €';
     }
-
 }
 
 fetch("http://localhost:3000/api/teddies")
@@ -90,10 +94,4 @@ function createCard(product) {
     newButton.innerHTML = "Voir plus";
 
     return col;
-}
-
-
-if (localStorage.length > 0) {
-    const dot = document.getElementById("red__dot");
-    dot.style.visibility = "visible";
 }

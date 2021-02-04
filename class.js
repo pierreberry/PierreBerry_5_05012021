@@ -24,7 +24,6 @@ class Product {
 
     }
 
-
     getName() {
         return this.name.toLowerCase.toTitlecase
     }

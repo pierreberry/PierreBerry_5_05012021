@@ -34,7 +34,7 @@ fetch(`http://localhost:3000/api/teddies/` + urlId("id"))
         let product = new Product(teddiesDescription.colors, teddiesDescription._id, teddiesDescription.name, teddiesDescription.price, teddiesDescription.imageUrl, teddiesDescription.description)
         contentTeddies.push(product);
 
-        console.log(contentTeddies);
+
 
         displayContent(product);
         displayColors(product);
@@ -69,29 +69,30 @@ function displayColors(product) {
 }
 
 
+
+
 function storage(product) {
 
     let colorChoosen = "";
-
+    let x = localStorage.length;
     if (product.colors.length === 1) {
         colorChoosen = product.colors[0];
     } else {
         document.getElementById('colors__teddies').addEventListener('change', (e) => {
             colorChoosen = e.target.value;
             document.getElementById("test__couleur").style.visibility = "hidden";
-            console.log(colorChoosen);
+            product.colors = colorChoosen;
         })
     }
+
 
     document.getElementById("storagePanier").addEventListener('click', () => {
         if (colorChoosen === "") {
             document.getElementById("test__couleur").style.visibility = "visible";
+
         } else {
-            localStorage.setItem("teddiesId", product._id);
-            localStorage.setItem("teddiesName", product.name);
-            localStorage.setItem("teddiesPicture", product.image);
-            localStorage.setItem("teddiesPrice", product.price);
-            localStorage.setItem("teddiesColor", colorChoosen);
+            x++;
+            localStorage.setItem(`teddies:${x}`, JSON.stringify(product));
             document.getElementById("red__dot").style.visibility = "visible";
         }
     })
