@@ -20,7 +20,8 @@ document.getElementById("clearStorage").addEventListener('click', (e) => {
 })
 
 
-Object.keys(localStorage).forEach(function (key) {
+
+/* Object.keys(localStorage).forEach(function (key) {
     let store = JSON.parse(localStorage.getItem(key));
     console.log(localStorage.getItem(key));
     const panier = document.getElementById("panierPlein");
@@ -44,4 +45,4 @@ Object.keys(localStorage).forEach(function (key) {
     storePrice.setAttribute("disabled", true);
     storePrice.setAttribute("value", store.price / 100 + ',' + store.price % 100 + ' €')
     displayStore.appendChild(storePrice);
-});
+}); */

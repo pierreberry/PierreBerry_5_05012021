@@ -3,37 +3,6 @@ if (localStorage.length > 0) {
     dot.style.visibility = "visible";
 }
 
-class Product {
-    constructor(colors, id, name, price, image, description) {
-        this.colors = colors;
-        this.id = id;
-        this.name = name;
-        this.price = price;
-        this.image = image;
-        this.description = description;
-    }
-
-    getPrice() {
-        return this.price / 100 + ',' + this.price % 100 + ' €';
-    }
-}
-
-fetch("http://localhost:3000/api/teddies")
-    .then((response) => {
-        return response.json();
-    })
-    .then((teddies) => {
-
-        productList = [];
-
-        teddies.forEach(data => {
-            let product = new Product(data.colors, data._id, data.name, data.price, data.imageUrl, data.description);
-            productList.push(product);
-        })
-
-        createCards(productList);
-    });
-
 
 function createCards(productList) {
     //Get the container for each card
@@ -74,6 +43,8 @@ function createCard(product) {
     newPrice.classList.add("card-title");
     cardBody.appendChild(newPrice);
     newPrice.innerHTML = product.getPrice();
+
+
     //Creation of the teddies name element p.card-text with link
     const newName = document.createElement("p");
     newName.classList.add("card-text");
@@ -95,3 +66,5 @@ function createCard(product) {
 
     return col;
 }
+
+getTeddies();
