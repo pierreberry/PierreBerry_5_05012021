@@ -30,6 +30,5 @@ function getTeddy() {
             displayContent(product);
             displayColors(product);
             storage(product);
-
         });
 }

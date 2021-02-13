@@ -31,6 +31,7 @@ function displayColors(product) {
     })
 }
 
+
 function storage(product) {
 
     let colorChoosen = "";
@@ -41,26 +42,28 @@ function storage(product) {
         document.getElementById('colors__teddies').addEventListener('change', (e) => {
             colorChoosen = e.target.value;
             document.getElementById("test__couleur").style.visibility = "hidden";
-            product.colors = colorChoosen;
         })
     }
 
-    let x = localStorage.length;
-
-    let cartArray = [];
+    let cartArray = JSON.parse(localStorage.getItem('cart')) || [];
 
     document.getElementById("storagePanier").addEventListener('click', () => {
         if (colorChoosen === "") {
             document.getElementById("test__couleur").style.visibility = "visible";
         } else {
-            console.log(product);
-            cartArray.push(product);
-            console.log(cartArray);
+            cartArray.push({
+                name: product.name,
+                description: product.description,
+                price: product.price,
+                id: product.id,
+                image: product.image,
+                color: colorChoosen
+            });
             document.getElementById("red__dot").style.visibility = "visible";
+            console.log(cartArray);
+            localStorage.setItem('cart', JSON.stringify(cartArray));
         }
-        /* localStorage.setItem(`cart`, cartArray); */
     })
 }
-
 
 getTeddy();
