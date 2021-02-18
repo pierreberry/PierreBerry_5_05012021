@@ -31,12 +31,54 @@
 
     <div id="panierPlein" class="container">
         <div class="row">
-            <div id="panier" class="col-6">
+            <div id="panier" class="col-8">
             </div>
-            <div class="col-6">
-                <button id="clearStorage" type="button" class="btn">Vider mon panier</button>
+            <div class="col-4 formulaire">
+                <div class="row">
+                    <div class="col-6">
+                        <p id="finalPrice"></p>
+                        <button id="clearStorage" type="button" class="btn">Vider mon panier</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <form>
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="lastName">Nom</label>
+                                <input type="text" name="lastName" id="lastName" class="form-control"
+                                    autocomplete="off">
+                            </div>
+                            <div class="col-6">
+                                <label for="firstName">Prénom</label>
+                                <input type="text" name="firstName" id="firstName" class="form-control">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <label for="exampleFormControlInput1" class="form-label">Email address</label>
+                                <input type="email" class="form-control" id="exampleFormControlInput1">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="address">Adresse</label>
+                                <input type="text" name="address" id="adress" class="form-control">
+                            </div>
+                            <div class="col-6">
+                                <label for="city">Ville</label>
+                                <input type="text" name="city" id="city" class="form-control">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <button id="commande" type="button" class="btn">Commander</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
+    </div>
     </div>
 
     <script src="Product.js"></script>

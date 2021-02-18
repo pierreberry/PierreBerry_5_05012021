@@ -129,6 +129,8 @@ input{
     width: 50%;
 }
 
+/* PAGE PANIER */
+
 #panierVide{
     text-align: center;
     width: 100%;
@@ -137,10 +139,15 @@ input{
     position: absolute;
 }
 
+
+
 #panier{
-    border: 1px solid black;
-    height: 65vh;
-    overflow: scroll;
+    height: 66.2vh;
+    overflow-y: scroll;
+}
+
+#panier::-webkit-scrollbar{
+    display: none;
 }
 
 #test__couleur{
@@ -150,7 +157,6 @@ input{
 
 .cart__container{
     width: 100%;
-    border: 1px solid;
 }
 
 .number{
@@ -158,4 +164,52 @@ input{
     border: none;
     cursor: default;
     color: black;
+}
+
+#clearStorage{
+    width: 100%;
+}
+
+.cardCmd{
+    display: flex;
+    padding: 10px;
+    border-bottom: 2px solid #8f5bfe;
+    border-left: 2px solid #8f5bfe;
+    transition: border-left 200ms, border-bottom 200ms;
+}
+.cardCmd:hover{
+    border-bottom: 5px solid #8f5bfe;
+    border-left: 5px solid #8f5bfe;
+}
+
+.cmd__image{
+    width: 30%;
+}
+
+
+.cmd{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.cmd__description{
+    font-size: 0.6em;
+}
+
+.cmd__color{
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    margin: 5px;
+    border: 1px solid black;
+}
+.cmd__content{
+    width: 100%;
+    text-align: center;
+}
+.trash{
+    font-size: 1.5vh;
+    width: 10%;
+    height: 50px;
 }
