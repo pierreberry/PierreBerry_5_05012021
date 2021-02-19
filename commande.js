@@ -1,19 +1,17 @@
-function getStorage() {
-
-    productStorage = [];
-    sum = 0;
-    JSON.parse(localStorage.getItem('cart')).forEach(data => {
-        let product = new Product(data.color, data.id, data.name, data.price, data.image, data.description);
-        productStorage.push(product);
-        sum += data.price;
-    })
-    createCart(productStorage);
-    additionPrice(sum);
-
-};
+function deleteProduct(product, row) {
+    let cart = JSON.parse(localStorage.getItem('cart'));
+    for (let i = 0; i < cart.length; i++) {
+        if (cart[i].number === product.number) {
+            cart.splice(i, 1);
+            row.remove();
+        }
+    }
+    cart = JSON.stringify(cart);
+    localStorage.setItem('cart', cart);
+}
 
 function additionPrice(sum) {
-    const total = sum / 100 + ',' + sum % 100 + ' €'
+    let total = sum / 100 + ',' + (sum % 100).toString().padEnd(2, 0) + ' €'
     finalPrice.innerHTML = `Prix total : ` + total;
 }
 
@@ -26,7 +24,6 @@ function createCart(productStorage) {
         panier.appendChild(creation);
     });
 }
-
 
 function displayCart(product) {
     //Creation of the bootstrap row
@@ -67,12 +64,15 @@ function displayCart(product) {
     //Creation of span name
     const cmdColor = document.createElement("span");
     cmdColor.classList.add("cmd__color");
-    cmdColor.style.backgroundColor = product.colors;
+    cmdColor.style.backgroundColor = product.selectedColor;
     cmdCB.appendChild(cmdColor);
     //Creation of button price
     const cmdTrash = document.createElement("button");
     cmdTrash.classList.add("btn");
     cmdTrash.classList.add("trash");
+    cmdTrash.addEventListener("click", (e) => {
+        deleteProduct(product, row);
+    })
     cmdCB.appendChild(cmdTrash);
     //Icon trash
     const iconTrash = document.createElement("i");
@@ -89,7 +89,7 @@ function displayCart(product) {
 
 function showEmptyCart() {
     document.getElementById("panierVide").style.visibility = 'visible';
-    document.getElementById("panierPlein").style.visibility = 'hidden';
+    document.getElementById("panierPlein").innerHTML = null;
 }
 
 function showCartContent() {
@@ -107,12 +107,6 @@ document.getElementById("clearStorage").addEventListener('click', (e) => {
     localStorage.clear();
     showEmptyCart();
 })
-
-const listBtn = document.querySelectorAll(`div .cardCmd`)
-
-console.log(listBtn);
-
-
 
 getStorage();
 

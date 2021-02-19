@@ -8,7 +8,14 @@ function getTeddies() {
             productList = [];
 
             teddies.forEach(data => {
-                let product = new Product(data.colors, data._id, data.name, data.price, data.imageUrl, data.description);
+                let product = new Product(
+                    data.colors,
+                    data._id,
+                    data.name,
+                    data.price,
+                    data.imageUrl,
+                    data.description
+                );
                 productList.push(product);
             })
 
@@ -24,7 +31,14 @@ function getTeddy() {
         .then((teddiesDescription) => {
 
             contentTeddies = [];
-            let product = new Product(teddiesDescription.colors, teddiesDescription._id, teddiesDescription.name, teddiesDescription.price, teddiesDescription.imageUrl, teddiesDescription.description)
+            let product = new Product(
+                teddiesDescription.colors,
+                teddiesDescription._id,
+                teddiesDescription.name,
+                teddiesDescription.price,
+                teddiesDescription.imageUrl,
+                teddiesDescription.description
+            )
             contentTeddies.push(product);
 
             displayContent(product);

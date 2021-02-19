@@ -34,13 +34,14 @@ function displayColors(product) {
 
 function storage(product) {
 
-    let colorChoosen = "";
+    let selectedColor = "";
+    let number = 0;
 
     if (product.colors.length === 1) {
-        colorChoosen = product.colors[0];
+        selectedColor = product.colors[0];
     } else {
         document.getElementById('colors__teddies').addEventListener('change', (e) => {
-            colorChoosen = e.target.value;
+            selectedColor = e.target.value;
             document.getElementById("test__couleur").style.visibility = "hidden";
         })
     }
@@ -48,7 +49,7 @@ function storage(product) {
     let cartArray = JSON.parse(localStorage.getItem('cart')) || [];
 
     document.getElementById("storagePanier").addEventListener('click', () => {
-        if (colorChoosen === "") {
+        if (selectedColor === "") {
             document.getElementById("test__couleur").style.visibility = "visible";
         } else {
             cartArray.push({
@@ -57,10 +58,11 @@ function storage(product) {
                 price: product.price,
                 id: product.id,
                 image: product.image,
-                color: colorChoosen
+                selectedColor: selectedColor,
+                colors: product.colors,
+                number: number += 1,
             });
             document.getElementById("red__dot").style.visibility = "visible";
-            console.log(cartArray);
             localStorage.setItem('cart', JSON.stringify(cartArray));
         }
     })
