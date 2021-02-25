@@ -2,12 +2,19 @@ function deleteProduct(product, row) {
     let cart = JSON.parse(localStorage.getItem('cart'));
     for (let i = 0; i < cart.length; i++) {
         if (cart[i].number === product.number) {
+            let total = (cart[i].price * cart.length) - cart[i].price;
+            let sum = total / 100 + ',' + (total % 100).toString().padEnd(2, 0) + ' €';
             cart.splice(i, 1);
             row.remove();
+            finalPrice.innerHTML = `Prix total : ` + sum;
         }
     }
     cart = JSON.stringify(cart);
     localStorage.setItem('cart', cart);
+    if (JSON.parse(cart).length === 0) {
+        localStorage.clear();
+        showEmptyCart();
+    }
 }
 
 function additionPrice(sum) {
@@ -109,4 +116,3 @@ document.getElementById("clearStorage").addEventListener('click', (e) => {
 })
 
 getStorage();
-

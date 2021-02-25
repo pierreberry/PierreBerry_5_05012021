@@ -35,7 +35,6 @@ function displayColors(product) {
 function storage(product) {
 
     let selectedColor = "";
-    let number = 0;
 
     if (product.colors.length === 1) {
         selectedColor = product.colors[0];
@@ -49,6 +48,7 @@ function storage(product) {
     let cartArray = JSON.parse(localStorage.getItem('cart')) || [];
 
     document.getElementById("storagePanier").addEventListener('click', () => {
+        let number = Math.floor(Math.random() * 1000) + 1;
         if (selectedColor === "") {
             document.getElementById("test__couleur").style.visibility = "visible";
         } else {
@@ -60,7 +60,7 @@ function storage(product) {
                 image: product.image,
                 selectedColor: selectedColor,
                 colors: product.colors,
-                number: number += 1,
+                number: number,
             });
             document.getElementById("red__dot").style.visibility = "visible";
             localStorage.setItem('cart', JSON.stringify(cartArray));
