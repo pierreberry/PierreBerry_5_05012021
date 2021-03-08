@@ -1,7 +1,3 @@
-if (localStorage.length > 0) {
-    const dot = document.getElementById("red__dot");
-    dot.style.visibility = "visible";
-}
 
 
 function createCards(productList) {
@@ -65,6 +61,11 @@ function createCard(product) {
     newButton.innerHTML = "Voir plus";
 
     return col;
+}
+
+if (localStorage.length > 0) {
+    const dot = document.getElementById("red__dot");
+    dot.style.visibility = "visible";
 }
 
 getTeddies();

@@ -23,13 +23,16 @@ function additionPrice(sum) {
 }
 
 function createCart(productStorage) {
+    const productId = [];
     //Get the container for each card
     const panier = document.getElementById("panier");
     //Loop for each teddies in the api
     productStorage.forEach(product => {
+        productId.push(product.id)
         let creation = displayCart(product);
         panier.appendChild(creation);
     });
+    console.log(productId);
 }
 
 function displayCart(product) {
