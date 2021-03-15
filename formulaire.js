@@ -21,14 +21,22 @@ function validateForm() {
         email: ''
     }
     const verifMail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-    const verifInput = /^([a-zA-Z]{2,}\s[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\s?([a-zA-Z]{1,})?)/;
+    const verifInput = /^[a-zA-Z ,.'-]+$/;
     if (verifMail.test(document.getElementById("email").value)) {
         contact.email = document.getElementById("email").value;
     }
-    contact.lastName = document.getElementById("lastName").value;
-    contact.firstName = document.getElementById("firstName").value;
-    contact.address = document.getElementById("address").value;
-    contact.city = document.getElementById("city").value;
+    if (!document.getElementById("lastName").value == "") {
+        contact.lastName = document.getElementById("lastName").value;
+    }
+    if (!document.getElementById("firstName").value == "") {
+        contact.firstName = document.getElementById("firstName").value;
+    }
+    if (!document.getElementById("address").value == "") {
+        contact.address = document.getElementById("address").value;
+    }
+    if (!document.getElementById("city").value == "") {
+        contact.city = document.getElementById("city").value;
+    }
     return contact;
 }
 

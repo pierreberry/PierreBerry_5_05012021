@@ -1,5 +1,3 @@
-
-
 function createCards(productList) {
     //Get the container for each card
     let container = document.getElementById("cards");

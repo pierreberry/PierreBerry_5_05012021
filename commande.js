@@ -1,4 +1,4 @@
-function deleteProduct(product, row) {
+/* function deleteProduct(product, row) {
     let cart = JSON.parse(localStorage.getItem('cart'));
     for (let i = 0; i < cart.length; i++) {
         if (cart[i].number === product.number) {
@@ -15,7 +15,9 @@ function deleteProduct(product, row) {
         localStorage.clear();
         showEmptyCart();
     }
-}
+} */
+
+let instance = new Cart();
 
 function additionPrice(sum) {
     let total = sum / 100 + ',' + (sum % 100).toString().padEnd(2, 0) + ' €'
@@ -81,7 +83,7 @@ function displayCart(product) {
     cmdTrash.classList.add("btn");
     cmdTrash.classList.add("trash");
     cmdTrash.addEventListener("click", (e) => {
-        deleteProduct(product, row);
+        instance.deleteProduct(product, row);
     })
     cmdCB.appendChild(cmdTrash);
     //Icon trash
@@ -97,25 +99,26 @@ function displayCart(product) {
 
 }
 
-function showEmptyCart() {
+/* function showEmptyCart() {
     document.getElementById("panierVide").style.visibility = 'visible';
     document.getElementById("panierPlein").innerHTML = null;
-}
+} */
 
-function showCartContent() {
+/* function showCartContent() {
     document.getElementById("panierVide").style.visibility = 'hidden';
     document.getElementById("panierPlein").style.visibility = 'visible';
-}
+} */
 
 if (localStorage.length > 0) {
-    showCartContent();
+    instance.showCartContent();
 } else {
-    showEmptyCart();
+    instance.showEmptyCart();
 }
 
 document.getElementById("clearStorage").addEventListener('click', (e) => {
     localStorage.clear();
-    showEmptyCart();
+    instance.showEmptyCart();
 })
 
 getStorage();
+

@@ -5,4 +5,8 @@ function orderId() {
     return orderId;
 }
 
-document.querySelector('strong').textContent = orderId();
+function displayOrder() {
+
+    document.querySelector('strong').textContent = orderId();
+}
+displayOrder();
