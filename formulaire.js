@@ -8,7 +8,7 @@ function sendOrder(contact, products) {
     }).then((response) => {
         return response.json();
     }).then((order) => {
-        window.location.href = "confirmation.html?orderId=" + order.orderId;
+        window.location.href = "confirmation.html?orderId=" + order.orderId + "&price=" + additionPrice(sum);
     })
 }
 
@@ -21,7 +21,7 @@ function validateForm() {
         email: ''
     }
     const verifMail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-    const verifInput = /^[a-zA-Z ,.'-]+$/;
+
     if (verifMail.test(document.getElementById("email").value)) {
         contact.email = document.getElementById("email").value;
     }
@@ -40,20 +40,11 @@ function validateForm() {
     return contact;
 }
 
-function retrieveProducts() {
-    let products = [];
-    let cart = JSON.parse(localStorage.getItem('cart'));
-    for (let i = 0; i < cart.length; i++) {
-        products.push(cart[i].id);
-    }
-    return products;
-}
-
 function validate(e) {
     e.preventDefault();
     validateForm();
-    retrieveProducts();
-    sendOrder(validateForm(), retrieveProducts())
+    instance.retrieveProducts();
+    sendOrder(validateForm(), instance.retrieveProducts())
 }
 
 function init() {

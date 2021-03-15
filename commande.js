@@ -1,27 +1,9 @@
-/* function deleteProduct(product, row) {
-    let cart = JSON.parse(localStorage.getItem('cart'));
-    for (let i = 0; i < cart.length; i++) {
-        if (cart[i].number === product.number) {
-            let total = (cart[i].price * cart.length) - cart[i].price;
-            let sum = total / 100 + ',' + (total % 100).toString().padEnd(2, 0) + ' €';
-            cart.splice(i, 1);
-            row.remove();
-            finalPrice.innerHTML = `Prix total : ` + sum;
-        }
-    }
-    cart = JSON.stringify(cart);
-    localStorage.setItem('cart', cart);
-    if (JSON.parse(cart).length === 0) {
-        localStorage.clear();
-        showEmptyCart();
-    }
-} */
-
-let instance = new Cart();
+const instance = new Cart();
 
 function additionPrice(sum) {
     let total = sum / 100 + ',' + (sum % 100).toString().padEnd(2, 0) + ' €'
     finalPrice.innerHTML = `Prix total : ` + total;
+    return total;
 }
 
 function createCart(productStorage) {
@@ -99,25 +81,14 @@ function displayCart(product) {
 
 }
 
-/* function showEmptyCart() {
-    document.getElementById("panierVide").style.visibility = 'visible';
-    document.getElementById("panierPlein").innerHTML = null;
-} */
-
-/* function showCartContent() {
-    document.getElementById("panierVide").style.visibility = 'hidden';
-    document.getElementById("panierPlein").style.visibility = 'visible';
-} */
-
 if (localStorage.length > 0) {
     instance.showCartContent();
 } else {
     instance.showEmptyCart();
 }
 
-document.getElementById("clearStorage").addEventListener('click', (e) => {
-    localStorage.clear();
-    instance.showEmptyCart();
+document.getElementById("clearStorage").addEventListener('click', () => {
+    instance.deleteCartContent();
 })
 
 getStorage();

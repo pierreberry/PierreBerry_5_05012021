@@ -31,4 +31,18 @@ class Cart {
         document.getElementById("panierVide").style.visibility = 'hidden';
         document.getElementById("panierPlein").style.visibility = 'visible';
     }
+
+    deleteCartContent() {
+        localStorage.clear();
+        this.showEmptyCart();
+    }
+
+    retrieveProducts() {
+        let products = [];
+        let cart = this.cart;
+        for (let i = 0; i < cart.length; i++) {
+            products.push(cart[i].id);
+        }
+        return products;
+    }
 }
