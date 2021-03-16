@@ -1,11 +1,5 @@
 const instance = new Cart();
 
-function additionPrice(sum) {
-    let total = sum / 100 + ',' + (sum % 100).toString().padEnd(2, 0) + ' €'
-    finalPrice.innerHTML = `Prix total : ` + total;
-    return total;
-}
-
 function createCart(productStorage) {
     const productId = [];
     //Get the container for each card
@@ -16,7 +10,6 @@ function createCart(productStorage) {
         let creation = displayCart(product);
         panier.appendChild(creation);
     });
-    console.log(productId);
 }
 
 function displayCart(product) {
@@ -91,5 +84,10 @@ document.getElementById("clearStorage").addEventListener('click', () => {
     instance.deleteCartContent();
 })
 
+function displayPrice() {
+    finalPrice.innerHTML = `Prix total : ` + instance.displayTotalPrice();
+}
+
 getStorage();
 
+displayPrice();

@@ -8,7 +8,7 @@ function sendOrder(contact, products) {
     }).then((response) => {
         return response.json();
     }).then((order) => {
-        window.location.href = "confirmation.html?orderId=" + order.orderId + "&price=" + additionPrice(sum);
+        window.location.href = "confirmation.html?orderId=" + order.orderId + "&price=" + instance.displayTotalPrice();
     })
 }
 
