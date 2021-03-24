@@ -3,16 +3,6 @@ class Cart {
         this.cart = JSON.parse(localStorage.getItem("cart"));
     }
 
-    /*displayTotalPrice() {
-        let cart = this.cart;
-        let total = 0;
-        cart.forEach(cartPrice => {
-            total += cartPrice.price;
-        });
-        let totalPrice = total / 100 + ',' + (total % 100).toString().padEnd(2, 0) + ' €';
-        return totalPrice;
-    } */
-
     displayTotalPrice() {
         let total = this.cart.reduce((prev, cur) => prev + cur.price, 0)
         return total / 100 + ',' + (total % 100).toString().padEnd(2, 0) + ' €';
@@ -33,23 +23,8 @@ class Cart {
         localStorage.setItem('cart', cart);
         if (JSON.parse(cart).length === 0) {
             localStorage.clear();
-            this.showEmptyCart();
+            showEmptyCart();
         }
-    }
-
-    showEmptyCart() {
-        document.getElementById("panierVide").style.visibility = 'visible';
-        document.getElementById("panierPlein").innerHTML = null;
-    }
-
-    showCartContent() {
-        document.getElementById("panierVide").style.visibility = 'hidden';
-        document.getElementById("panierPlein").style.visibility = 'visible';
-    }
-
-    deleteCartContent() {
-        localStorage.clear();
-        this.showEmptyCart();
     }
 
     retrieveProducts() {
@@ -61,3 +36,5 @@ class Cart {
         return products;
     }
 }
+
+const cart = new Cart();

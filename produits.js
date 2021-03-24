@@ -1,10 +1,6 @@
 function urlId(sVar) {
     return unescape(window.location.search.replace(new RegExp("^(?:.*[&\\?]" + escape(sVar).replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1"));
 }
-if (localStorage.length > 0) {
-    const dot = document.getElementById("red__dot");
-    dot.style.visibility = "visible";
-}
 
 function displayContent(product) {
     teddiesName.innerHTML = product.name;
@@ -48,7 +44,15 @@ function storage(product) {
     let cartArray = JSON.parse(localStorage.getItem('cart')) || [];
 
     document.getElementById("storagePanier").addEventListener('click', () => {
+
         let number = Math.floor(Math.random() * 1000) + 1;
+        let lastProductInArray = cartArray.slice(-1)[0] || [];
+
+        if (product.name === lastProductInArray.name && selectedColor === lastProductInArray.selectedColor) {
+            console.log("same")
+            product.quantity++
+        }
+
         if (selectedColor === "") {
             document.getElementById("test__couleur").style.visibility = "visible";
         } else {
@@ -61,6 +65,7 @@ function storage(product) {
                 selectedColor: selectedColor,
                 colors: product.colors,
                 number: number,
+                quantity: product.quantity
             });
             document.getElementById("red__dot").style.visibility = "visible";
             localStorage.setItem('cart', JSON.stringify(cartArray));
@@ -68,4 +73,5 @@ function storage(product) {
     })
 }
 
+redDotCart();
 getTeddy();

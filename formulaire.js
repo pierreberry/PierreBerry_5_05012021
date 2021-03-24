@@ -8,7 +8,7 @@ function sendOrder(contact, products) {
     }).then((response) => {
         return response.json();
     }).then((order) => {
-        window.location.href = "confirmation.html?orderId=" + order.orderId + "&price=" + instance.displayTotalPrice();
+        window.location.href = "confirmation.html?orderId=" + order.orderId + "&price=" + cart.displayTotalPrice();
     })
 }
 
@@ -43,8 +43,8 @@ function validateForm() {
 function validate(e) {
     e.preventDefault();
     validateForm();
-    instance.retrieveProducts();
-    sendOrder(validateForm(), instance.retrieveProducts())
+    retrieveProducts();
+    sendOrder(validateForm(), retrieveProducts())
 }
 
 function init() {

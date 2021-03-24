@@ -1,12 +1,14 @@
-const instance = new Cart();
+function createCartFromId(productId) {
+    productId.forEach(id => {
+        console.log(id)
+    })
+}
 
 function createCart(productStorage) {
-    const productId = [];
     //Get the container for each card
     const panier = document.getElementById("panier");
     //Loop for each teddies in the api
     productStorage.forEach(product => {
-        productId.push(product.id)
         let creation = displayCart(product);
         panier.appendChild(creation);
     });
@@ -58,7 +60,7 @@ function displayCart(product) {
     cmdTrash.classList.add("btn");
     cmdTrash.classList.add("trash");
     cmdTrash.addEventListener("click", (e) => {
-        instance.deleteProduct(product, row);
+        cart.deleteProduct(product, row);
     })
     cmdCB.appendChild(cmdTrash);
     //Icon trash
@@ -74,20 +76,34 @@ function displayCart(product) {
 
 }
 
-if (localStorage.length > 0) {
-    instance.showCartContent();
+function showEmptyCart() {
+    document.getElementById("panierVide").style.visibility = 'visible';
+    document.getElementById("panierPlein").innerHTML = null;
+}
+
+function showCartContent() {
+    document.getElementById("panierVide").style.visibility = 'hidden';
+    document.getElementById("panierPlein").style.visibility = 'visible';
+}
+
+function deleteCartContent() {
+    localStorage.clear();
+    showEmptyCart();
+}
+
+if (localStorage.key("cart")) {
+    showCartContent();
 } else {
-    instance.showEmptyCart();
+    showEmptyCart();
 }
 
 document.getElementById("clearStorage").addEventListener('click', () => {
-    instance.deleteCartContent();
+    deleteCartContent();
 })
 
 function displayPrice() {
-    finalPrice.innerHTML = `Prix total : ` + instance.displayTotalPrice();
+    finalPrice.innerHTML = `Prix total : ` + cart.displayTotalPrice();
 }
 
 getStorage();
-
 displayPrice();

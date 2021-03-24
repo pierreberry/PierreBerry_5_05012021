@@ -37,8 +37,6 @@ function createCard(product) {
     newPrice.classList.add("card-title");
     cardBody.appendChild(newPrice);
     newPrice.innerHTML = product.getPrice();
-
-
     //Creation of the teddies name element p.card-text with link
     const newName = document.createElement("p");
     newName.classList.add("card-text");
@@ -61,9 +59,5 @@ function createCard(product) {
     return col;
 }
 
-if (localStorage.length > 0) {
-    const dot = document.getElementById("red__dot");
-    dot.style.visibility = "visible";
-}
-
+redDotCart();
 getTeddies();

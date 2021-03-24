@@ -1,5 +1,6 @@
+// Class for all the Teddies
 class Product {
-    constructor(colors, id, name, price, image, description, selectedColor = null, number = null) {
+    constructor(colors, id, name, price, image, description, selectedColor = null, number = null, quantity = 1) {
         this.colors = colors;
         this.id = id;
         this.name = name;
@@ -8,8 +9,9 @@ class Product {
         this.description = description;
         this.selectedColor = selectedColor;
         this.number = number;
+        this.quantity = quantity;
     }
-
+    // method for Format the price
     getPrice() {
         return this.price / 100 + ',' + (this.price % 100).toString().padEnd(2, 0) + ' €';
     }

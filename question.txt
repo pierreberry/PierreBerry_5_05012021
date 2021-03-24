@@ -1,0 +1,12 @@
+class Product
+
+selectedColor :
+selectedColor dans produits.js utile ?
+Utiliser product.selectedColor ?
+
+number :
+Mettre mon math.random dans ma class directement au lieu de
+faire une variable pour ?
+
+quantity :
+problème d'addition de la quantité en changeant de couleur

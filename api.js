@@ -1,3 +1,5 @@
+// Fetch for all the Teddies
+// in app.js for index.html
 function getTeddies() {
     fetch("http://localhost:3000/api/teddies")
         .then((response) => {
@@ -23,6 +25,8 @@ function getTeddies() {
         });
 }
 
+// Fetch the description for the Teddie selected 
+// in produits.js for produits.html
 function getTeddy() {
     fetch(`http://localhost:3000/api/teddies/` + urlId("id"))
         .then((response) => {
