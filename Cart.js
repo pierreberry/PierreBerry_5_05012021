@@ -11,7 +11,7 @@ class Cart {
     deleteProduct(product, row) {
         let cart = this.cart;
         for (let i = 0; i < cart.length; i++) {
-            if (cart[i].number === product.number) {
+            if (cart[i].id === product.id && cart[i].selectedColor === product.selectedColor) {
                 let total = cart.reduce((prev, cur) => prev + cur.price, 0) - cart[i].price;
                 let sum = total / 100 + ',' + (total % 100).toString().padEnd(2, 0) + ' €';
                 cart.splice(i, 1);

@@ -1,12 +1,8 @@
-class Product
 
-selectedColor :
-selectedColor dans produits.js utile ?
-Utiliser product.selectedColor ?
+a continuer Loop cartArray
 
-number :
-Mettre mon math.random dans ma class directement au lieu de
-faire une variable pour ?
+function addEvent dans addProductToStorage
 
-quantity :
-problème d'addition de la quantité en changeant de couleur
+problème de calcul de total
+
+affichage avec la quantité

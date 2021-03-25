@@ -9,7 +9,6 @@ function getStorage() {
             data.image,
             data.description,
             data.selectedColor,
-            data.number,
             data.quantity
         );
         productStorage.push(product);

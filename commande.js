@@ -55,6 +55,10 @@ function displayCart(product) {
     cmdColor.classList.add("cmd__color");
     cmdColor.style.backgroundColor = product.selectedColor;
     cmdCB.appendChild(cmdColor);
+    //Creation of quantity number
+    const cmdQuantity = document.createElement("span");
+    cmdQuantity.textContent = product.quantity;
+    cmdCB.appendChild(cmdQuantity);
     //Creation of button price
     const cmdTrash = document.createElement("button");
     cmdTrash.classList.add("btn");
