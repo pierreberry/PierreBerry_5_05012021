@@ -3,6 +3,16 @@ class Cart {
         this.cart = JSON.parse(localStorage.getItem("cart"));
     }
 
+    totalPricePerProduct(product) {
+        let cart = this.cart;
+        for (let i = 0; i < cart.length; i++) {
+            if (cart[i].id === product.id && cart[i].selectedColor === product.selectedColor) {
+                const total = cart[i].quantity * cart[i].price;
+                return total / 100 + ',' + (total % 100).toString().padEnd(2, 0) + ' €';
+            }
+        }
+    }
+
     displayTotalPrice() {
         let total = this.cart.reduce((prev, cur) => prev + cur.price, 0)
         return total / 100 + ',' + (total % 100).toString().padEnd(2, 0) + ' €';
@@ -35,6 +45,8 @@ class Cart {
         }
         return products;
     }
+
+
 }
 
 const cart = new Cart();

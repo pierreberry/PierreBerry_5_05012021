@@ -41,10 +41,14 @@ function displayCart(product) {
     const cmdName = document.createElement("p");
     cmdName.innerHTML = product.name;
     cmdNP.appendChild(cmdName);
-    //Creation of p price
+    //Creation of p  price
     const cmdPrice = document.createElement("p");
-    cmdPrice.innerHTML = product.getPrice();
+    cmdPrice.innerHTML = "Unité : " + product.getPrice();
     cmdNP.appendChild(cmdPrice);
+    //Creation of p total price
+    const cmdTotalPrice = document.createElement("p");
+    cmdTotalPrice.innerHTML = "Total : " + cart.totalPricePerProduct(product);
+    cmdNP.appendChild(cmdTotalPrice);
     //Creation of the Color & Button
     const cmdCB = document.createElement("div");
     cmdCB.classList.add("cmd");
@@ -57,7 +61,7 @@ function displayCart(product) {
     cmdCB.appendChild(cmdColor);
     //Creation of quantity number
     const cmdQuantity = document.createElement("span");
-    cmdQuantity.textContent = product.quantity;
+    cmdQuantity.textContent = "Quantité : " + product.quantity;
     cmdCB.appendChild(cmdQuantity);
     //Creation of button price
     const cmdTrash = document.createElement("button");
