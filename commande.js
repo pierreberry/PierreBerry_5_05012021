@@ -18,70 +18,90 @@ function displayCart(product) {
     //Creation of the bootstrap row
     let row = document.createElement("div");
     row.classList.add("row");
+    //!!!!!!!! Creation of the Card !!!!!!!!//
     //Creation of the div.card
     const cardCmd = document.createElement("div");
-    cardCmd.classList.add("cardCmd");
+    cardCmd.classList.add("card__cmd");
     row.appendChild(cardCmd);
+    //!!!!!!!! Creation of the Image !!!!!!!!//
+    //Creation of the div container for image
+    const divImg = document.createElement("div");
+    divImg.classList.add("cmd__image");
+    cardCmd.appendChild(divImg);
     //Creation of the image element
     const imageCmd = document.createElement("img");
     imageCmd.src = product.image;
-    imageCmd.classList.add("cmd__image");
     imageCmd.classList.add("shadow");
-    cardCmd.appendChild(imageCmd);
-    //Creation of the cmd__content
-    const contentCmd = document.createElement("div");
-    contentCmd.classList.add("cmd__content");
-    cardCmd.appendChild(contentCmd);
-    //Creation of the Name & Price
-    const cmdNP = document.createElement("div");
-    cmdNP.classList.add("cmd");
-    cmdNP.classList.add("cmd__name__prix");
-    contentCmd.appendChild(cmdNP);
+    divImg.appendChild(imageCmd);
+    //!!!!!!!! Creation of the Name & Color & Price!!!!!!!!//
+    //Creation of the div > description__cmd
+    const divDescriptionCmd = document.createElement("div");
+    divDescriptionCmd.classList.add("description__cmd");
+    cardCmd.appendChild(divDescriptionCmd);
     //Creation of p name
     const cmdName = document.createElement("p");
+    cmdName.classList.add("name")
     cmdName.innerHTML = product.name;
-    cmdNP.appendChild(cmdName);
-    //Creation of p  price
-    const cmdPrice = document.createElement("p");
-    cmdPrice.innerHTML = "Unité : " + product.getPrice();
-    cmdNP.appendChild(cmdPrice);
-    //Creation of p total price
-    const cmdTotalPrice = document.createElement("p");
-    cmdTotalPrice.innerHTML = "Total : " + cart.totalPricePerProduct(product);
-    cmdNP.appendChild(cmdTotalPrice);
-    //Creation of the Color & Button
-    const cmdCB = document.createElement("div");
-    cmdCB.classList.add("cmd");
-    cmdCB.classList.add("cmd__color__btn");
-    contentCmd.appendChild(cmdCB);
-    //Creation of span name
+    divDescriptionCmd.appendChild(cmdName);
+    //Creation of span Color
     const cmdColor = document.createElement("span");
     cmdColor.classList.add("cmd__color");
     cmdColor.style.backgroundColor = product.selectedColor;
-    cmdCB.appendChild(cmdColor);
-    //Creation of quantity number
-    const cmdQuantity = document.createElement("span");
-    cmdQuantity.textContent = "Quantité : " + product.quantity;
-    cmdCB.appendChild(cmdQuantity);
-    //Creation of button price
+    divDescriptionCmd.appendChild(cmdColor);
+    //Creation of p  price
+    const cmdPrice = document.createElement("p");
+    cmdPrice.classList.add("price")
+    cmdPrice.innerHTML = "Unité : " + product.getPrice();
+    divDescriptionCmd.appendChild(cmdPrice);
+    //!!!!!!!! Creation of the Quantity & Delete !!!!!!!!//
+    //Creation of the div > quantity__delete
+    const divQuantityDelete = document.createElement("div");
+    divQuantityDelete.classList.add("quantity__delete");
+    cardCmd.appendChild(divQuantityDelete);
+    //Creation of the option quantity
+    //Create array of options to be added
+    const array = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
+    //Create and append select list
+    const selectList = document.createElement("select");
+    selectList.classList.add("quantity");
+    divQuantityDelete.appendChild(selectList);
+    //Create and append the options
+    for (let i = 0; i < array.length; i++) {
+        const option = document.createElement("option");
+        option.value = array[i];
+        option.text = array[i];
+        if (array[i] == product.quantity) {
+            option.setAttribute("selected", true);
+        }
+        selectList.appendChild(option);
+    }
+    //Creation of button trash
     const cmdTrash = document.createElement("button");
-    cmdTrash.classList.add("btn");
-    cmdTrash.classList.add("trash");
+    cmdTrash.classList.add("delete");
     cmdTrash.addEventListener("click", (e) => {
-        cart.deleteProduct(product, row);
+        cart.deleteProduct(product);
+        row.remove()
     })
-    cmdCB.appendChild(cmdTrash);
+    divQuantityDelete.appendChild(cmdTrash);
     //Icon trash
     const iconTrash = document.createElement("i");
     iconTrash.classList.add("fas");
     iconTrash.classList.add("fa-trash");
     cmdTrash.appendChild(iconTrash);
-    //Creation of the p description
-    const cmdDescription = document.createElement("p");
-    cmdDescription.innerHTML = product.description;
-    contentCmd.appendChild(cmdDescription);
+    //!!!!!!!! Creation of the Total price !!!!!!!!//
+    //Creation of the div > total__cmd
+    const divTotalCmd = document.createElement("div");
+    divTotalCmd.classList.add("total__cmd");
+    cardCmd.appendChild(divTotalCmd);
+    //Creation of the p total title
+    const totalTitle = document.createElement("p");
+    totalTitle.classList.add("total__title")
+    divTotalCmd.appendChild(totalTitle);
+    //Creation of p total price
+    const totalPrice = document.createElement("p");
+    totalPrice.innerHTML = "Total : " + product.getTotalPrice();
+    totalTitle.appendChild(totalPrice);
     return row;
-
 }
 
 function showEmptyCart() {
@@ -112,6 +132,7 @@ document.getElementById("clearStorage").addEventListener('click', () => {
 function displayPrice() {
     finalPrice.innerHTML = `Prix total : ` + cart.displayTotalPrice();
 }
+
 
 getStorage();
 displayPrice();

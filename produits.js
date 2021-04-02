@@ -27,7 +27,6 @@ function displayColors(product) {
     })
 }
 
-
 function addProductToStorage(product) {
 
     if (product.colors.length === 1) {
@@ -42,38 +41,40 @@ function addProductToStorage(product) {
     let cartArray = JSON.parse(localStorage.getItem('cart')) || [];
 
     document.getElementById("storagePanier").addEventListener('click', () => {
-
-        if (!product.selectedColor) {
-            document.getElementById("test__couleur").style.visibility = "visible";
-            return
-        }
-
-        let hasUpdated = false
-
-        for (let i = 0; i < cartArray.length; i++) {
-            if (cartArray[i].id === product.id && cartArray[i].selectedColor === product.selectedColor) {
-                cartArray[i].quantity += 1
-                hasUpdated = true;
-            }
-        }
-
-        if (!hasUpdated) {
-            cartArray.push({
-                name: product.name,
-                description: product.description,
-                price: product.price,
-                id: product.id,
-                image: product.image,
-                selectedColor: product.selectedColor,
-                colors: product.colors,
-                quantity: product.quantity
-            });
-        }
-        document.getElementById("red__dot").style.visibility = "visible";
-        localStorage.setItem('cart', JSON.stringify(cartArray));
+        addEvent(product, cartArray);
     })
 }
 
+function addEvent(product, cartArray) {
+    if (!product.selectedColor) {
+        document.getElementById("test__couleur").style.visibility = "visible";
+        return
+    }
+
+    let hasUpdated = false
+
+    for (let i = 0; i < cartArray.length; i++) {
+        if (cartArray[i].id === product.id && cartArray[i].selectedColor === product.selectedColor) {
+            cartArray[i].quantity += 1
+            hasUpdated = true;
+        }
+    }
+
+    if (!hasUpdated) {
+        cartArray.push({
+            name: product.name,
+            description: product.description,
+            price: product.price,
+            id: product.id,
+            image: product.image,
+            selectedColor: product.selectedColor,
+            colors: product.colors,
+            quantity: product.quantity
+        });
+    }
+    document.getElementById("red__dot").style.visibility = "visible";
+    localStorage.setItem('cart', JSON.stringify(cartArray));
+}
 
 redDotCart();
 getTeddy();

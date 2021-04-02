@@ -1,10 +1,4 @@
 
-a continuer Loop cartArray
-
-function addEvent dans addProductToStorage
-
-problème de calcul de total
-
-affichage avec la quantité
+problème de calcul de total sur le delete
 
 permettre de choisir la quantité dans la page produit (si pas trop chiant)

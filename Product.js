@@ -14,4 +14,8 @@ class Product {
     getPrice() {
         return this.price / 100 + ',' + (this.price % 100).toString().padEnd(2, 0) + ' €';
     }
+
+    getTotalPrice() {
+        return (this.quantity * this.price) / 100 + ',' + ((this.quantity * this.price) % 100).toString().padEnd(2, 0) + ' €'
+    }
 }
