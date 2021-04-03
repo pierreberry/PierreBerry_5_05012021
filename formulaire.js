@@ -43,8 +43,8 @@ function validateForm() {
 function validate(e) {
     e.preventDefault();
     validateForm();
-    retrieveProductIds();
-    sendOrder(validateForm(), retrieveProductIds())
+    cart.retrieveProductIds();
+    sendOrder(validateForm(), cart.retrieveProductIds())
 }
 
 function init() {

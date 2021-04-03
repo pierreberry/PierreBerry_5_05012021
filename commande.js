@@ -63,6 +63,12 @@ function displayCart(product) {
     const array = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
     //Create and append select list
     const selectList = document.createElement("select");
+    selectList.addEventListener("change", () => {
+        //product.quantity = selectList.value;
+        cart.saveNewQuantity(product, selectList)
+        totalPrice.innerHTML = "Total : " + product.getTotalPrice();
+        finalPrice.innerHTML = `Prix total : ` + cart.displayTotalPrice();
+    })
     selectList.classList.add("quantity");
     divQuantityDelete.appendChild(selectList);
     //Create and append the options
@@ -80,6 +86,7 @@ function displayCart(product) {
     cmdTrash.classList.add("delete");
     cmdTrash.addEventListener("click", (e) => {
         cart.deleteProduct(product);
+        finalPrice.innerHTML = `Prix total : ` + cart.displayTotalPrice();
         row.remove()
     })
     divQuantityDelete.appendChild(cmdTrash);
@@ -119,6 +126,8 @@ function deleteCartContent() {
     showEmptyCart();
 }
 
+
+
 if (localStorage.key("cart")) {
     showCartContent();
 } else {
@@ -133,6 +142,5 @@ function displayPrice() {
     finalPrice.innerHTML = `Prix total : ` + cart.displayTotalPrice();
 }
 
-
-getStorage();
+cart.getStorage();
 displayPrice();

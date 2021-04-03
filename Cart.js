@@ -3,6 +3,24 @@ class Cart {
         this.cart = JSON.parse(localStorage.getItem("cart"));
     }
 
+    getStorage(productStorage) {
+        productStorage = [];
+        this.cart.forEach(data => {
+            let product = new Product(
+                data.colors,
+                data.id,
+                data.name,
+                data.price,
+                data.image,
+                data.description,
+                data.selectedColor,
+                data.quantity
+            );
+            productStorage.push(product);
+        })
+        createCart(productStorage);
+    }
+
     displayTotalPrice() {
         let sum = 0;
         this.cart.forEach(item => {
@@ -11,16 +29,24 @@ class Cart {
         return sum / 100 + ',' + (sum % 100).toString().padEnd(2, 0) + ' €';
     }
 
-    //Button delete
-    deleteProduct(product) {
-        let cart = this.cart;
-        for (let i = 0; i < cart.length; i++) {
-            if (cart[i].id === product.id && cart[i].selectedColor === product.selectedColor) {
-                cart.splice(i, 1);
+    saveNewQuantity(product, selectList) {
+        for (let i = 0; i < this.cart.length; i++) {
+            if (this.cart[i].id === product.id && this.cart[i].selectedColor === product.selectedColor) {
+                product.quantity = selectList.value;
+                this.cart[i].quantity = selectList.value;
             }
         }
-        finalPrice.innerHTML = `Prix total : ` + this.displayTotalPrice();
-        this.saveCart(cart);
+        this.saveCart(this.cart);
+    }
+
+    //Button delete
+    deleteProduct(product) {
+        for (let i = 0; i < this.cart.length; i++) {
+            if (this.cart[i].id === product.id && this.cart[i].selectedColor === product.selectedColor) {
+                this.cart.splice(i, 1);
+            }
+        }
+        this.saveCart(this.cart);
     }
 
     saveCart(cart) {

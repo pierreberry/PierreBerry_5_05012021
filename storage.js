@@ -1,4 +1,4 @@
-function getStorage() {
+/* function getStorage() {
     productStorage = [];
     JSON.parse(localStorage.getItem('cart')).forEach(data => {
         let product = new Product(
@@ -14,4 +14,4 @@ function getStorage() {
         productStorage.push(product);
     })
     createCart(productStorage);
-};
+}; */
