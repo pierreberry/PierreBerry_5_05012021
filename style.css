@@ -10,12 +10,13 @@ body{
 }
 .panier{
     position: sticky;
-    top: 50px;
-    left: 90%;
+    top: 5px;
+    left: 90vw;
     font-size: 3vh;
     width: 10vh;
     display: flex;
     justify-content: center;
+    
 }
 #red__dot{
     position: absolute;
@@ -38,6 +39,7 @@ header{
 }
 
 header a img{
+    margin-top: 50px;
     width: 30vh;
 }
 .title{
