@@ -29,6 +29,16 @@ function displayColors(product) {
 
 function addProductToStorage(product) {
 
+    let cartArray = JSON.parse(localStorage.getItem('cart')) || [];
+
+    selectProductColor(product)
+
+    document.getElementById("storagePanier").addEventListener('click', () => {
+        addEvent(product, cartArray);
+    })
+}
+
+function selectProductColor(product) {
     if (product.colors.length === 1) {
         product.selectedColor = product.colors[0];
     } else {
@@ -37,13 +47,8 @@ function addProductToStorage(product) {
             document.getElementById("test__couleur").style.visibility = "hidden";
         })
     }
-
-    let cartArray = JSON.parse(localStorage.getItem('cart')) || [];
-
-    document.getElementById("storagePanier").addEventListener('click', () => {
-        addEvent(product, cartArray);
-    })
 }
+
 
 function addEvent(product, cartArray) {
     if (!product.selectedColor) {
@@ -71,9 +76,9 @@ function addEvent(product, cartArray) {
             quantity: product.quantity
         });
     }
+
     document.getElementById("red__dot").style.visibility = "visible";
     localStorage.setItem('cart', JSON.stringify(cartArray));
 }
-
 redDotCart();
 getTeddy();
