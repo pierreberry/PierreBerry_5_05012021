@@ -50,7 +50,6 @@ function addEvent(product, cartArray) {
         document.getElementById("test__couleur").style.visibility = "visible";
         return
     }
-
     let hasUpdated = false
 
     for (let i = 0; i < cartArray.length; i++) {

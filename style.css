@@ -84,7 +84,8 @@ header a img{
     text-shadow: 2px 2px 2px #c892ba;
 }
 .description__teddies{
-    height: 50vh;
+    display: flex;
+    flex-wrap: wrap;
 }
 .description__teddies img{
     width: 100%;
@@ -139,10 +140,13 @@ input{
     position: absolute;
 }
 
-
+#panierPlein{
+    display: flex;
+    flex-wrap: wrap;
+}
 
 #panier{
-    height: 66.2vh;
+    max-height: 66.2vh;
     overflow-y: scroll;
 }
 
