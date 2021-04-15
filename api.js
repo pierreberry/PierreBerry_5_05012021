@@ -47,6 +47,6 @@ function getTeddy() {
 
             displayContent(product);
             displayColors(product);
-            addProductToStorage(product);
+            addProduct(product);
         });
 }

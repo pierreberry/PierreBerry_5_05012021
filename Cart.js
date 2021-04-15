@@ -1,11 +1,7 @@
 class Cart {
     constructor() {
-        this.cart = JSON.parse(localStorage.getItem("cart"));
-    }
-
-    getStorage(productStorage) {
-        productStorage = [];
-        this.cart.forEach(data => {
+        this.products = [];
+        (JSON.parse(localStorage.getItem("cart")) || []).forEach(data => {
             let product = new Product(
                 data.colors,
                 data.id,
@@ -16,56 +12,79 @@ class Cart {
                 data.selectedColor,
                 data.quantity
             );
-            productStorage.push(product);
-        })
-        createCart(productStorage);
+            this.products.push(product);
+        });
     }
 
+    //Method for add the product to the storage
+    addProduct(product) {
+        let hasUpdated = false
+
+        for (let i = 0; i < this.products.length; i++) {
+            if (this.products[i].id === product.id && this.products[i].selectedColor === product.selectedColor) {
+                this.products[i].quantity += 1
+                hasUpdated = true;
+            }
+        }
+
+        if (!hasUpdated) {
+            this.products.push({
+                name: product.name,
+                description: product.description,
+                price: product.price,
+                id: product.id,
+                image: product.image,
+                selectedColor: product.selectedColor,
+                colors: product.colors,
+                quantity: product.quantity
+            });
+        }
+        this.saveCart();
+    }
+
+    //Method for display the total price on the cart
     displayTotalPrice() {
         let sum = 0;
-        this.cart.forEach(item => {
+        this.products.forEach(item => {
             sum += item.quantity * item.price;
         });
         return sum / 100 + ',' + (sum % 100).toString().padEnd(2, 0) + ' €';
     }
 
+    //Method who save the new quantity 
     saveNewQuantity(product, selectList) {
-        for (let i = 0; i < this.cart.length; i++) {
-            if (this.cart[i].id === product.id && this.cart[i].selectedColor === product.selectedColor) {
+        for (let i = 0; i < this.products.length; i++) {
+            if (this.products[i].id === product.id && this.products[i].selectedColor === product.selectedColor) {
                 product.quantity = selectList.value;
-                this.cart[i].quantity = selectList.value;
+                this.products[i].quantity = selectList.value;
             }
         }
-        this.saveCart(this.cart);
+        this.saveCart();
     }
 
     //Button delete
     deleteProduct(product) {
-        for (let i = 0; i < this.cart.length; i++) {
-            if (this.cart[i].id === product.id && this.cart[i].selectedColor === product.selectedColor) {
-                this.cart.splice(i, 1);
+        for (let i = 0; i < this.products.length; i++) {
+            if (this.products[i].id === product.id && this.products[i].selectedColor === product.selectedColor) {
+                this.products.splice(i, 1);
             }
         }
-        this.saveCart(this.cart);
+        this.saveCart();
     }
 
-    saveCart(cart) {
-        cart = JSON.stringify(cart);
-        localStorage.setItem('cart', cart);
-        if (JSON.parse(cart).length === 0) {
-            localStorage.clear();
-            showEmptyCart();
-        }
+    //Save cart on the storage
+    saveCart() {
+        localStorage.setItem('cart', JSON.stringify(this.products));
     }
 
+    //Method for retrieve each ID for the confirm command
     retrieveProductIds() {
         let productIds = [];
-        for (let i = 0; i < this.cart.length; i++) {
-            productIds.push(this.cart[i].id);
+        for (let i = 0; i < this.products.length; i++) {
+            productIds.push(this.products[i].id);
         }
         return productIds;
     }
 
 }
 
-const cart = new Cart();

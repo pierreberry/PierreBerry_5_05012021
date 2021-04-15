@@ -76,6 +76,9 @@ header a img{
 .card .lien__image img:hover{
     transform: scale(1.1);
 }
+.card-price{
+    font-size: 1.25em;
+}
 .card-text a{
     color: black;
     text-decoration: none;
@@ -227,13 +230,19 @@ input{
     flex-direction: column;
     font-size: 1.5em;
 }
-.quantity__delete .quantity {
+.quantity__delete .controle__input{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.quantity__delete .controle__input button{
+    width: 20%;
+}
+.quantity__delete .controle__input .quantity {
     display: block;
-    width: 50%;
+    width: 40%;
     font-size: 1.2em;
     text-align: center;
-    border: 1px solid;
-    padding-left: 30px;
 }
 .quantity__delete .delete {
     display: block;

@@ -13,9 +13,11 @@ function createCard(product) {
     const col = document.createElement("div");
     col.classList.add("col");
     //Creation of the div.card
+    //!!!!!!!! Creation of the Card !!!!!!!!//
     const newCard = document.createElement("div");
     newCard.classList.add("card");
     col.appendChild(newCard);
+    //!!!!!!!! Creation of the Image !!!!!!!!//
     //Creation of the link on the image a.lien__image
     const cardLink = document.createElement("a");
     cardLink.classList.add("lien__image");
@@ -28,15 +30,18 @@ function createCard(product) {
     newImg.classList.add("shadow-sm");
     cardLink.appendChild(newImg);
     newImg.src = product.image;
+    //!!!!!!!! Creation of the Body of the Card !!!!!!!!//
     //Creation of the the div.card-body
     const cardBody = document.createElement("div");
     cardBody.classList.add("card-body");
     newCard.appendChild(cardBody);
-    //Creation of the teddies price element h5.card-title
-    const newPrice = document.createElement("h5");
-    newPrice.classList.add("card-title");
+    //!!!!!!!! Creation of the Card !!!!!!!!//
+    //Creation of the teddies price element span.card-price
+    const newPrice = document.createElement("span");
+    newPrice.classList.add("card-price");
     cardBody.appendChild(newPrice);
     newPrice.innerHTML = product.getPrice();
+    //!!!!!!!! Creation of the Name !!!!!!!!//
     //Creation of the teddies name element p.card-text with link
     const newName = document.createElement("p");
     newName.classList.add("card-text");
@@ -48,6 +53,7 @@ function createCard(product) {
         `'>` +
         product.name +
         `</a>`;
+    //!!!!!!!! Creation of the Button !!!!!!!!//
     //Creation of the button Voir plus a.btn
     const newButton = document.createElement("a");
     newButton.classList.add("btn");
