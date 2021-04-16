@@ -1,3 +1,4 @@
+//Request send for the confirmation
 function sendOrder(contact, products) {
     fetch('http://localhost:3000/api/teddies/order', {
         method: 'post',
@@ -12,6 +13,7 @@ function sendOrder(contact, products) {
     })
 }
 
+//test validation formulaire
 function validateForm() {
     let contact = {
         firstName: '',
@@ -40,6 +42,7 @@ function validateForm() {
     return contact;
 }
 
+//get all the function for send the order
 function validate(e) {
     e.preventDefault();
     validateForm();
@@ -47,6 +50,7 @@ function validate(e) {
     sendOrder(validateForm(), cart.retrieveProductIds())
 }
 
+//event for validate the order
 function init() {
     document.getElementById("myForm").addEventListener("submit", validate);
 }

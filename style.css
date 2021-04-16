@@ -151,12 +151,25 @@ input{
 }
 
 #panier{
-    max-height: 66.2vh;
+    max-height: 60vh;
     overflow-y: scroll;
 }
 
-#panier::-webkit-scrollbar{
-    display: none;
+#panier::-webkit-scrollbar-track
+{
+    border-radius: 10px;
+    background-color: #F5F5F5;
+}
+
+#panier::-webkit-scrollbar
+{
+    width: 12px;
+    background-color: #F5F5F5;
+}
+
+#panier::-webkit-scrollbar-thumb
+{
+    background-color: #8f5bfe;
 }
 
 #test__couleur{
@@ -180,8 +193,6 @@ input{
 }
 
 .card__cmd {
-    width: 700px;
-    height: 175px;
     display: flex;
     font-family: sans-serif;
     border-left: 2px solid #8f5bfe;
@@ -246,8 +257,8 @@ input{
 }
 .quantity__delete .delete {
     display: block;
-    width: 50%;
-    height: 25%;
+    width: 10vh;
+    height: 5vh;
     font-size: 100%;
     background-color: #8f5bfe;
     border: none;
@@ -260,7 +271,3 @@ input{
     flex-direction: column;
     font-size: 1.5em;
 }
-.total__cmd .total__title {
-    margin-bottom: 10px;
-}
-

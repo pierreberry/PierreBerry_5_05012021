@@ -19,9 +19,11 @@ class Cart {
     //Method for add the product to the storage
     addProduct(product) {
         let hasUpdated = false
-
         for (let i = 0; i < this.products.length; i++) {
             if (this.products[i].id === product.id && this.products[i].selectedColor === product.selectedColor) {
+                if (this.products[i].quantity >= 10) {
+                    return
+                };
                 this.products[i].quantity += 1
                 hasUpdated = true;
             }
@@ -52,14 +54,18 @@ class Cart {
     }
 
     //Method who save the new quantity 
-    saveNewQuantity(product, selectList) {
+    saveNewQuantity(product, newValue) {
+        if (newValue < 0 || newValue > 10) {
+            return product.quantity;
+        }
         for (let i = 0; i < this.products.length; i++) {
             if (this.products[i].id === product.id && this.products[i].selectedColor === product.selectedColor) {
-                product.quantity = selectList.value;
-                this.products[i].quantity = selectList.value;
+                this.products[i].quantity = newValue;
+                this.saveCart();
+                return newValue;
             }
         }
-        this.saveCart();
+
     }
 
     //Button delete
@@ -87,4 +93,3 @@ class Cart {
     }
 
 }
-

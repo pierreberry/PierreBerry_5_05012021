@@ -71,7 +71,8 @@ function displayCart(product) {
     controleInput.appendChild(buttonMinus);
     //Create and append quantity input
     const quantityInput = document.createElement("input");
-    quantityInput.setAttribute("disabled", true);
+    quantityInput.addEventListener("input", () => changeQuantityOnInput(quantityInput, product, totalPrice))
+    quantityInput.addEventListener("keydown", (e) => changeQuantityOnKeypress(e, quantityInput, product, totalPrice))
     quantityInput.value = product.quantity;
     quantityInput.classList.add("quantity");
     controleInput.appendChild(quantityInput);
@@ -88,8 +89,7 @@ function displayCart(product) {
         finalPrice.innerHTML = `Prix total : ` + cart.displayTotalPrice();
         row.remove()
         if (JSON.parse(localStorage.getItem("cart")).length === 0) {
-            localStorage.clear();
-            showEmptyCart();
+            deleteCartContent()
         }
     })
     divQuantityDelete.appendChild(cmdTrash);
@@ -114,6 +114,7 @@ function displayCart(product) {
     return row;
 }
 
+
 const showEmptyCart = () => {
     document.getElementById("panierVide").style.visibility = 'visible';
     document.getElementById("panierPlein").innerHTML = null;
@@ -124,7 +125,7 @@ const showCartContent = () => {
     document.getElementById("panierPlein").style.visibility = 'visible';
 }
 
-const checkIfCartIsEmpty = () => {
+const verifyCartContent = () => {
     if (localStorage.key("cart")) {
         showCartContent();
     } else {
@@ -136,31 +137,48 @@ function deleteCartContent() {
     localStorage.clear();
     showEmptyCart();
 }
+const deleteCart = () => {
+    document.getElementById("clearStorage").addEventListener('click', deleteCartContent)
+}
 
-document.getElementById("clearStorage").addEventListener('click', () => deleteCartContent())
+const displayAllPrice = (product, totalPrice) => {
+    totalPrice.innerHTML = "Total : " + product.getTotalPrice();
+    finalPrice.innerHTML = `Prix total : ` + cart.displayTotalPrice();
+}
 
 function displayPrice() {
     finalPrice.innerHTML = `Prix total : ` + cart.displayTotalPrice();
 }
+
 function supprQuantity(quantityInput, product, totalPrice) {
-    if (quantityInput.value == 0) {
-        return
-    }
-    quantityInput.value--
-    cart.saveNewQuantity(product, quantityInput)
-    totalPrice.innerHTML = "Total : " + product.getTotalPrice();
-    finalPrice.innerHTML = `Prix total : ` + cart.displayTotalPrice();
-}
-function addQuantity(quantityInput, product, totalPrice) {
-    if (quantityInput.value == 10) {
-        return
-    }
-    quantityInput.value++
-    cart.saveNewQuantity(product, quantityInput)
-    totalPrice.innerHTML = "Total : " + product.getTotalPrice();
-    finalPrice.innerHTML = `Prix total : ` + cart.displayTotalPrice();
+    quantityInput.value = cart.saveNewQuantity(product, parseInt(quantityInput.value) - 1);
+    displayAllPrice(product, totalPrice);
 }
 
-checkIfCartIsEmpty();
+function addQuantity(quantityInput, product, totalPrice) {
+    quantityInput.value = cart.saveNewQuantity(product, parseInt(quantityInput.value) + 1)
+    displayAllPrice(product, totalPrice);
+}
+
+function changeQuantityOnInput(quantityInput, product, totalPrice) {
+    quantityInput.value = cart.saveNewQuantity(product, quantityInput.value)
+    displayAllPrice(product, totalPrice);
+}
+
+function changeQuantityOnKeypress(e, quantityInput, product, totalPrice) {
+    switch (e.code) {
+        case "ArrowDown":
+            // Handle "back"
+            supprQuantity(quantityInput, product, totalPrice)
+            break;
+        case "ArrowUp":
+            // Handle "forward"
+            addQuantity(quantityInput, product, totalPrice)
+            break;
+    }
+}
+
+verifyCartContent();
 createCart();
 displayPrice();
+deleteCart();
