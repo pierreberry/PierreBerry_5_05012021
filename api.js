@@ -20,7 +20,7 @@ function getTeddies() {
                 );
                 productList.push(product);
             })
-
+            
             createCards(productList);
         });
 }

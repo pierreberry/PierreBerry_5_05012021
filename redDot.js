@@ -4,4 +4,3 @@ function redDotCart() {
         document.getElementById("red__dot").style.visibility = "visible";
     }
 }
-

@@ -65,7 +65,6 @@ class Cart {
                 return newValue;
             }
         }
-
     }
 
     //Button delete
