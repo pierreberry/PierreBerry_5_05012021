@@ -1,11 +1,5 @@
 const cart = new Cart();
 
-function createCartFromId(productId) {
-    productId.forEach(id => {
-        console.log(id)
-    })
-}
-
 function createCart() {
     //Get the container for each card
     const panier = document.getElementById("panier");
@@ -146,7 +140,7 @@ const displayAllPrice = (product, totalPrice) => {
     finalPrice.innerHTML = `Prix total : ` + cart.displayTotalPrice();
 }
 
-function displayPrice() {
+function displayTotalPrice() {
     finalPrice.innerHTML = `Prix total : ` + cart.displayTotalPrice();
 }
 
@@ -180,5 +174,5 @@ function changeQuantityOnKeypress(e, quantityInput, product, totalPrice) {
 
 verifyCartContent();
 createCart();
-displayPrice();
+displayTotalPrice(); 
 deleteCart();
