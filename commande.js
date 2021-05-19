@@ -172,7 +172,12 @@ function changeQuantityOnKeypress(e, quantityInput, product, totalPrice) {
     }
 }
 
-verifyCartContent();
-createCart();
-displayTotalPrice(); 
-deleteCart();
+
+function initPage(){
+    verifyCartContent();
+    createCart();
+    displayTotalPrice(); 
+    deleteCart();
+}
+
+initPage()

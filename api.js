@@ -1,14 +1,12 @@
 // Fetch for all the Teddies
 // in app.js for index.html
 function getTeddies() {
-    fetch("http://localhost:3000/api/teddies")
+    return fetch("http://localhost:3000/api/teddies")
         .then((response) => {
             return response.json();
         })
         .then((teddies) => {
-
             productList = [];
-
             teddies.forEach(data => {
                 let product = new Product(
                     data.colors,
@@ -20,22 +18,19 @@ function getTeddies() {
                 );
                 productList.push(product);
             })
-            
-            createCards(productList);
+            return productList;
         });
 }
 
 // Fetch the description for the Teddie selected 
 // in produits.js for produits.html
 function getTeddy() {
-    fetch(`http://localhost:3000/api/teddies/` + urlId("id"))
+    return fetch(`http://localhost:3000/api/teddies/` + urlId("id"))
         .then((response) => {
             return response.json();
         })
         .then((teddiesDescription) => {
-
-            contentTeddies = [];
-            let product = new Product(
+            return new Product(
                 teddiesDescription.colors,
                 teddiesDescription._id,
                 teddiesDescription.name,
@@ -43,10 +38,5 @@ function getTeddy() {
                 teddiesDescription.imageUrl,
                 teddiesDescription.description
             )
-            contentTeddies.push(product);
-
-            displayContent(product);
-            displayColors(product);
-            addProduct(product);
         });
 }

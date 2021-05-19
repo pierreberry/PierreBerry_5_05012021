@@ -60,5 +60,14 @@ function addProductEvent(product) {
     document.getElementById("red__dot").style.visibility = "visible";
 }
 
-redDotCart();
-getTeddy();
+
+function initPage(){
+    redDotCart();
+    getTeddy().then(product => {
+        displayContent(product);
+        displayColors(product);
+        addProduct(product);
+    });
+}
+
+initPage()

@@ -17,5 +17,10 @@ function displayOrder() {
 function displayPrice() {
     document.querySelector('span').textContent = totalPrice();
 }
-displayOrder();
-displayPrice();
+
+function initPage(){
+    displayOrder();
+    displayPrice();
+}
+
+initPage();

@@ -65,5 +65,15 @@ function createCard(product) {
     return col;
 }
 
-redDotCart();
-getTeddies();
+
+function initPage(){
+
+    redDotCart();
+
+    getTeddies().then(productList => {
+        createCards(productList);
+    });
+
+}
+
+initPage()
