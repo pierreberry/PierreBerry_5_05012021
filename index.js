@@ -35,7 +35,7 @@ function createCard(product) {
     const cardBody = document.createElement("div");
     cardBody.classList.add("card-body");
     newCard.appendChild(cardBody);
-    //!!!!!!!! Creation of the Card !!!!!!!!//
+    //!!!!!!!! Creation of the Card Price!!!!!!!!//
     //Creation of the teddies price element span.card-price
     const newPrice = document.createElement("span");
     newPrice.classList.add("card-price");
